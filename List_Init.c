@@ -18,6 +18,9 @@
  * @Execve:    Pointer to Execve function.
  * @Match:     Pointer to Match function.
  * @list:      Pointer to list structure.
+ *
+ *                                 O-Notation
+ * Complexity      O(1)
  */
 
 void

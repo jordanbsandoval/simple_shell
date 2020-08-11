@@ -14,6 +14,9 @@
  * @list:      Points to the data structure list.
  * @Path:      Pointer that contains the data to be added to the created node.
  * Return: Value0 if inserting the element is successful, or –1 otherwise.
+ *
+ *                                 O-Notation
+ * Complexity      O(1)
  */
 
 int Ins_Next_Element(List *list, Element *element, char *Path)

@@ -9,6 +9,10 @@
  *                once for each element as it is removed, provideddestroy
  *                was not set to NULL.
  * @list: Pointer to a function of type structure.
+ *
+ *                                 O-Notation
+ * Complexity      O(n) --> wheren is the number of elements in the
+ *                          linked list.
  */
 
 void

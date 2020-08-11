@@ -14,6 +14,9 @@
  * @Path:        Pointer that contains the data that will be eliminated by the
  *               Destroy function, contained in the List_ structure
  * Return:       0 if removing the element is successful, or –1 otherwise.
+ *
+ *                                 O-Notation
+ * Complexity      O(1)
  */
 
 int
