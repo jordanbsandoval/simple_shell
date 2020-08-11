@@ -1,6 +1,6 @@
-# shell-tester
+# 0x16. C - Simple Shell
 
-Testing suite for the Holberton's SimpleShell project
+Project from Holbeton School that consist on create a simple shell in C language that is able to excute basic system commands.
 
 ## How to use this repo
 
@@ -9,11 +9,22 @@ Testing suite for the Holberton's SimpleShell project
 git clone https://github.com/jordanbsandoval/simple_shell.git 
 ```
 
-2. Run your testing suite
+2. Compile your program
 ```
-./hsh
+gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
+```
+
+3. Testing
+
+## interactive mode
+
+```
+$ ./hsh hsh$ /bin/ls hsh main.c shell.c hsh$ hsh$ exit $
+```
+## Non-interactive mode
+```
+$ echo "/bin/ls" | ./hsh hsh main.c shell.c $
 ```
 If your ./hsh fails because permissions, remember to chmod +x that file
 
-## I have a test and i want to upload!
-Please make a pull request. And remember... You need to upload both .md and .bash files and following the [Style Guide](https://github.com/dario-castano/shell-tester/wiki/Style-Guide).
+
