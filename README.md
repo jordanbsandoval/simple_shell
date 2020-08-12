@@ -1,33 +1,11 @@
 # Simple Shell
-==============
 
 ![Shell_holberton](./img/shell.png "shell-logo")
 
-Project from Holbeton School that consist on create a simple shell in C language that is able to excute basic system commands.
+In computing, the term shell is used to refer to those programs that provide a user interface to access the services of the operating system. These can be graphics or plain text, depending on the type of interface they use. Shells are designed to facilitate the way in which the different programs available on the computer are invoked or executed.
 
-## How to use this repo
+It should be noted that there are 2 types of Shell and these are:
 
-1. Clone the repo
-```
-git clone https://github.com/jordanbsandoval/simple_shell.git 
-```
+**Common text shells** like bash, emacs, Windows command prompt, among others.
 
-2. Compile your program
-```
-gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
-```
-
-3. Testing
-
-## interactive mode
-
-```
-$ ./hsh hsh$ /bin/ls hsh main.c shell.c hsh$ hsh$ exit $
-```
-## Non-interactive mode
-```
-$ echo "/bin/ls" | ./hsh hsh main.c shell.c $
-```
-If your ./hsh fails because permissions, remember to chmod +x that file
-
-
+**Common graphical shells** such as GNome, KDE, XFCE, LXDE, Unity, MacOS Desktop Environment, Windows Desktop, among others.
