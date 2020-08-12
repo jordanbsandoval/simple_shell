@@ -30,6 +30,22 @@ or for the second command.
 
 > ./executable-file-name
 
+### Example of some commands that we can use.
+
+| Command           | Descripction                                                                                 |
+| ----------------- | -------------------------------------------------------------------------------------------- |
+| ls                | List directory contents                                                                      |
+| file              | Determining a File's Type                                                                    |
+| which             | Display which executable program will be executed                                            |
+| date              | with the  date  command, which displays the current time anddate                             |
+| cal               | A related command is cal which, by default, displays a calendar of the current month.        |
+| free              | To display the amount of free memory, enter the free command                                 |     
+| df                | To see the current amount of free space on our disk drives, enter df                         |
+| exit              | Exit command at the shell prompt                                                             |
+| pwd               | Print name of current working directory                                                      |
+
+They work with their respective arguments.
+ 
 Authors ✒️
 
 * [Jordan Buitrago](https://github.com/jordanbsandoval) 
