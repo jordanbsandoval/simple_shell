@@ -26,6 +26,13 @@
 	while (((element)->Path)[Length])		\
 		(Length)++;
 
+#define print_variable_Envarioment(Temp)	\
+	while (*Temp)				\
+		printf("%s\n", *Temp++);
+
+#define Verificador_String(String)					\
+	((String) == '\n' || (String) == '\t' || (String) == ' ')
+
 /*
  *  Variable environ.
  */

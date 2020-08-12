@@ -102,15 +102,26 @@ int main(void)
 	{
 		if (!(list.Match("exit", String_Character)))
 		{
-			if (String_Character[4] == '\n' || String_Character[4] == '\t' || String_Character[4] == ' ')
+			if (Verificador_String(String_Character[4]))
 			{
 				free(String_Character);
+				List_Destroy(&list);
 				exit (0);
 			}
 			else
 				printf("Comando no encontrado\n");
 		}
+		else if (!(list.Match("env", String_Character)))
+		{
+			if (Verificador_String(String_Character[3]))
+			{
+				char **Temp = environ;
 
+				print_variable_Envarioment((Temp));
+			}
+			else
+				printf("Comando no encontrado\n");
+		}
 		if (isatty(STDIN_FILENO) == 1)
 			write(STDOUT_FILENO, "$ ", 2);
 		free(String_Character);
