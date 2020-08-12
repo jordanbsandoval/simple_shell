@@ -100,6 +100,17 @@ int main(void)
 	signal(SIGINT, Handle_Sigint);
 	while (getline(&String_Character, &Counter_Character, stdin) != EOF)
 	{
+		if (!(list.Match("exit", String_Character)))
+		{
+			if (String_Character[4] == '\n' || String_Character[4] == '\t' || String_Character[4] == ' ')
+			{
+				free(String_Character);
+				exit (0);
+			}
+			else
+				printf("Comando no encontrado\n");
+		}
+
 		if (isatty(STDIN_FILENO) == 1)
 			write(STDOUT_FILENO, "$ ", 2);
 		free(String_Character);
