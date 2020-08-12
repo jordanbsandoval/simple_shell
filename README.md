@@ -1,7 +1,7 @@
 # Simple Shell
 ==============
 
-![Shell-holberton] (./img/shell.png "shell-logo")
+! [Shell_holberton](./img/shell.png "shell-logo")
 
 Project from Holbeton School that consist on create a simple shell in C language that is able to excute basic system commands.
 
