@@ -86,6 +86,9 @@ typedef struct List_    List;
  *  Funciones.
  */
 
+void
+Analizar_String(char *String_Character, List *list);
+
 char *
 Data_Path(char **Temp_Environ);
 

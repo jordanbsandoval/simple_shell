@@ -28,7 +28,8 @@ int Ins_Next_Element(List *list, Element *element, char *Path)
 		return (-1);
 
 	New_Element->Path = Path;
-	Length_PATH(New_Element, (New_Element->Length_Path));
+	if (Path)
+		Length_PATH(New_Element, (New_Element->Length_Path));
 	if (!element)
 	{
 		if (!(list->Tail))

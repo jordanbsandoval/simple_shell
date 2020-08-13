@@ -122,6 +122,8 @@ int main(void)
 			else
 				printf("Comando no encontrado\n");
 		}
+		else
+			Analizar_String(String_Character, &list);
 		if (isatty(STDIN_FILENO) == 1)
 			write(STDOUT_FILENO, "$ ", 2);
 		free(String_Character);
