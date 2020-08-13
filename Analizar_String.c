@@ -100,10 +100,10 @@ void Analizar_String(char *String_Character, List *list)
 		while (element)
 		{
 			Temp_String = _strcat(element, *argv);
-			list->Execve(Temp, argv);
+			list->Execve(Temp_String, argv);
 			free(Temp_String);
+			element = element->Next;
 		}
-		free(Temp_String);
 	}
 	free (argv);
 }
