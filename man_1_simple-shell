@@ -1,0 +1,74 @@
+.TH man 1 "12 Abr 2020" "V 1.0" "hsh man page" "Holberton School"
+
+.SH NAME
+
+hsh (Holberton Simple Shell)
+
+.SH SYNOPSIS
+
+Run hsh
+.br
+.B ./hsh
+
+.SH DESCRIPTION
+
+Hsh is a basic command interpreter. Reads commands from standard
+input and execute them. Hsh has the basic features of linux sh.
+It can be use compiled and used in the most distributions and versions of linux.
+
+.SH USAGE
+.SS INTERACTIVE MODE
+1- Run the executable file:
+.B ./hsh
+.br
+2- Enter the command to run at the command prompt with its arguments
+.br
+
+Format:
+.br
+.I <command>
+.I <argument_1>
+.I <argument_2>
+.I <argument_3>
+.B ...
+.SS NON-INTERACTIVE MODE
+You can invoke hsh and execute commands through a pipe
+.br
+
+Format:
+.br
+.I <command>
+|
+.B ./hsh
+
+.SH BUILTIN COMMANDS
+In addition to running system programs, hsh has the following own commands
+
+.B env
+= prints environment variables and their content
+.br
+.B exit
+= let hsh end
+
+
+.SH EXAMPLE
+
+Example of how to execute a command in interactive mode, in this case To run
+.B ls
+and some arguments:
+.br
+.B ls -la
+.br
+
+Example of how to execute a command in non-interactive mode:
+.br
+.B echo "ls -la" | ./hsh
+
+.SH SEE ALSO
+.I man sh
+
+.SH BUGS
+No known bugs.
+
+.SH AUTHORS
+Emmanuel Palacios, Jordan buitrago
