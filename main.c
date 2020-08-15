@@ -13,14 +13,15 @@ Match(char *Path, char *Key1)
 {
 	while (*Path)
 	{
-		if(*Path == *Key1)
+		if (*Path == *Key1)
 			Path++, Key1++;
 		else
 			break;
 	}
-        if (*Path)
+
+	if (*Path)
 		return (1);
-        else
+	else
 		return (0);
 }
 
@@ -78,38 +79,38 @@ void Handle_Sigint(int Status)
 	fflush(stdout);
 }
 
-int main(void)
+/**
+ * main - shell program.
+ * @argc: Number of parameters passed to the shell.
+ * @argv: parameters passed to shell
+ * Return: 0.
+ */
+
+int main(int argc, char **argv)
 {
 	List list;
 	size_t Counter_Character = 0;
 	char *String_Character = NULL;
 
-	/*
-	 * Initialize the data structure list.
-	 */
-
 	List_Init(&list, Destroy, Execve, Match);
 	Get_Path(&list);
-
-	/*
-	 * Starting shell.
-	 */
 
 	if (isatty(STDIN_FILENO) == 1)
 		write(STDOUT_FILENO, "$ ", 2);
 	signal(SIGINT, Handle_Sigint);
 	while (getline(&String_Character, &Counter_Character, stdin) != EOF)
 	{
+		Counter_Error++;
 		if (!(list.Match("exit", String_Character)))
 		{
 			if (Verificador_String(String_Character[4]))
 			{
 				free(String_Character);
 				List_Destroy(&list);
-				exit (0);
+				exit(0);
 			}
 			else
-				printf("Comando no encontrado\n");
+				hand_error(Counter_Error, argv);
 		}
 		else if (!(list.Match("env", String_Character)))
 		{
@@ -120,7 +121,7 @@ int main(void)
 				print_variable_Envarioment((Temp));
 			}
 			else
-				printf("Comando no encontrado\n");
+				hand_error(Counter_Error, argv);
 		}
 		else
 			Analizar_String(String_Character, &list);
@@ -132,11 +133,6 @@ int main(void)
 	}
 	free(String_Character);
 	write(1, "\n", 1);
-
-	/*
-	 * Destroy the data structure.
-	 */
-
 	List_Destroy(&list);
 	return (0);
 }

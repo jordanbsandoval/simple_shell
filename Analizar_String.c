@@ -1,5 +1,11 @@
 #include "Shell.h"
 
+/**
+ * Counter_Word - Word count program
+ * @String: Array of characters to analyze.
+ * Return: Returns the number of words.
+ */
+
 int Counter_Word(char *String)
 {
 	int Number_Word = 0;
@@ -17,6 +23,12 @@ int Counter_Word(char *String)
 	return (Number_Word);
 }
 
+/**
+ * _Fork - Function that creates a second process.
+ * @argv: Contains the path and arguments passed to the program.
+ * Return: Returns the status of the second program.
+ */
+
 int _Fork(char **argv)
 {
 	pid_t child_pid;
@@ -31,9 +43,20 @@ int _Fork(char **argv)
 	if (child_pid == 0)
 		execve(*argv, argv, NULL);
 	else
+	{
 		wait(&status);
-	return (0);
+		printf("%d", status);
+	}
+	return (status);
 }
+
+/**
+ * Match_Path - Function to find out whether or not there is a path written in
+ *              the passed string.
+ * @Command_Or_Path: First argument written in terminal.
+ * @list: It contains the data structure, where are the paths to analyze.
+ * Return: Return the command complete or null if it finds the path or not.
+ */
 
 char *Match_Path(char *Command_Or_Path, List *list)
 {
@@ -48,6 +71,13 @@ char *Match_Path(char *Command_Or_Path, List *list)
 	return (NULL);
 }
 
+/**
+ * _strcat - String that copies a string passed to me.
+ * @element: Node passed to the function, which contains the path to paste.
+ * @Command: Command also to paste.
+ * Return: I return null or the full Path.
+ */
+
 char *_strcat(Element *element, char *Command)
 {
 	int Length1 = 0;
@@ -59,7 +89,10 @@ char *_strcat(Element *element, char *Command)
 	Length1 += 2;
 	Length1 += element->Length_Path;
 
-	Path = (char *)malloc(sizeof(char) * Length1);
+	if (Length1)
+		Path = (char *)malloc(sizeof(char) * Length1);
+	else
+		return (NULL);
 
 	while (i < Length1)
 	{
@@ -75,21 +108,30 @@ char *_strcat(Element *element, char *Command)
 	return (Path);
 }
 
+/**
+ * Analizar_String - Function that analyzes the string passed.
+ * @String_Character: Past string.
+ * @list: Data structure.
+ */
+
 void Analizar_String(char *String_Character, List *list)
 {
 	int Number_Word = Counter_Word(String_Character);
 	int Index       = 1;
-	char **argv     = (char **)malloc(sizeof(char *) * (Number_Word + 1));
+	char **argv;
 	char *Temp;
 
+	if (!Number_Word)
+		return;
+	argv = (char **)malloc(sizeof(char *) * (Number_Word + 1));
 	if (!argv)
-		return ;
+		return;
 	*argv = strtok(String_Character, " \n\t");
 	while (Index < Number_Word)
 		argv[Index++] = strtok(NULL, " \n\t");
-
 	Temp = *argv;
-	if (Temp = Match_Path(*argv, list))
+	Temp = Match_Path(*argv, list);
+	if (Temp)
 		_Fork(argv);
 	else
 	{
@@ -103,15 +145,14 @@ void Analizar_String(char *String_Character, List *list)
 			if (stat(Temp_String, &st) == 0)
 			{
 				list->Execve(Temp_String, argv);
+				free(Temp_String);
+				break;
 			}
-			else
-			{
-				
-			}
-
 			free(Temp_String);
 			element = element->Next;
 		}
+		if (!element)
+			hand_error(Counter_Error, argv);
 	}
-	free (argv);
+	free(argv);
 }

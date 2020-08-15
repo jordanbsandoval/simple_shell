@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include <signal.h>
 #include <sys/wait.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 /*
  *  Macros.
@@ -38,6 +40,7 @@
  */
 
 extern char **environ;
+int Counter_Error;
 
 /**
  * struct Element_ - This structure in the data structure represents
@@ -85,6 +88,9 @@ typedef struct List_    List;
 /*
  *  Funciones.
  */
+
+void
+hand_error(int error_counter, char **argv);
 
 void
 Analizar_String(char *String_Character, List *list);
