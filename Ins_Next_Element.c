@@ -21,13 +21,14 @@
 
 int Ins_Next_Element(List *list, Element *element, char *Path)
 {
-	Element *New_Element;
+	Element *New_Element = NULL;
 
 	New_Element = (Element *)malloc(sizeof(Element));
 	if (!New_Element)
 		return (-1);
 
 	New_Element->Path = Path;
+	New_Element->Length_Path = 0;
 	if (Path)
 		Length_PATH(New_Element, (New_Element->Length_Path));
 	if (!element)
