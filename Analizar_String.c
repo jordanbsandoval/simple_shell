@@ -101,7 +101,6 @@ char *_strcat(Element *element, char *Command)
 			Path[i] = Command[j++];
 		i++;
 	}
-	Path[i] = '\0';
 	return (Path);
 }
 
