@@ -12,13 +12,10 @@ int
 Match(char *Path, char *Key1)
 {
 	while (*Path)
-	{
 		if (*Path == *Key1)
 			Path++, Key1++;
 		else
 			break;
-	}
-
 	if (*Path)
 		return (1);
 	else
@@ -51,8 +48,8 @@ Destroy(char *PATH)
 int
 Execve(char *Path, char **argv)
 {
-	pid_t child_pid;
-	int status;
+	pid_t child_pid = 0;
+	int status      = 0;
 
 	child_pid = fork();
 	if (child_pid == -1)

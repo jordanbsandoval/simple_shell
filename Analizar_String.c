@@ -31,8 +31,8 @@ int Counter_Word(char *String)
 
 int _Fork(char **argv)
 {
-	pid_t child_pid;
-	int status;
+	pid_t child_pid  = 0;
+	int status       = 0;
 
 	child_pid = fork();
 	if (child_pid == -1)
@@ -43,10 +43,8 @@ int _Fork(char **argv)
 	if (child_pid == 0)
 		execve(*argv, argv, NULL);
 	else
-	{
 		wait(&status);
-		printf("%d", status);
-	}
+
 	return (status);
 }
 
@@ -63,11 +61,10 @@ char *Match_Path(char *Command_Or_Path, List *list)
 	Element *element = list->Head;
 
 	while (element)
-	{
 		if (!(list->Match(element->Path, Command_Or_Path)))
 			return (Command_Or_Path);
-		element = element->Next;
-	}
+		else
+			element = element->Next;
 	return (NULL);
 }
 
@@ -80,8 +77,8 @@ char *Match_Path(char *Command_Or_Path, List *list)
 
 char *_strcat(Element *element, char *Command)
 {
-	int Length1 = 0;
-	char *Path;
+	int Length1  = 0;
+	char *Path   = NULL;
 	int i = 0, j = 0;
 
 	while (Command[Length1])
@@ -118,8 +115,8 @@ void Analizar_String(char *String_Character, List *list)
 {
 	int Number_Word = Counter_Word(String_Character);
 	int Index       = 1;
-	char **argv;
-	char *Temp;
+	char **argv     = NULL;
+	char *Temp      = NULL;
 
 	if (!Number_Word)
 		return;
@@ -135,8 +132,8 @@ void Analizar_String(char *String_Character, List *list)
 		_Fork(argv);
 	else
 	{
-		Element *element = list->Head;
-		char *Temp_String;
+		Element *element  = list->Head;
+		char *Temp_String = NULL;
 		struct stat st;
 
 		while (element)
