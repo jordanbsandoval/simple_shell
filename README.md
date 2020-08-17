@@ -45,7 +45,50 @@ or for the second command.
 | pwd               | Print name of current working directory                                                      |
 
 They work with their respective arguments.
- 
+
+It should also be noted that the shell also works in an interactive and non-interactive way, that is:
+
+1. If the shell is initialized in this way, (interactive way)
+```
+$ ./hsh
+
+[prompt] [plus a space] [Waiting for characters to enter]
+
+$ (Waiting for characters to enter).
+$ ls
+     *** List content in current directory ***
+```
+
+2. Using the non-interactive shell (passing commands through a pipe)
+
+```
+$ echo "Holberton" | ./hsh
+
+The output of the program will appear as follows.
+
+$ Holberton 
+(Immediately exits the program)
+```
+
+The program also analyzes errors, that is, when someone copies a command that does not exist in the operating system, the following will appear.
+
+```
+$ ./hsh
+
+$ ldfs  ----> (A doodle was copied (command that does not exist in the operating system and the following will appear)).
+
+hsh: 2: lsls: not found
+```
+Errors also appear regarding an existing command; for example
+
+```
+$ ./hsh
+
+$ ls /home/me/jkdsf ---> (suppose this folder does not exist in the directory indicated by the absolute path).
+
+ls: cannot access '/home/me/jkdsf': No such file or directory.
+```
+
 Authors ✒️
 
 * [Jordan Buitrago](https://github.com/jordanbsandoval) 
