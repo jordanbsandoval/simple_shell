@@ -129,7 +129,8 @@ int main(int argc, char **argv)
 		Counter_Character = 0;
 	}
 	free(String_Character);
-	write(1, "\n", 1);
+	if (isatty(STDIN_FILENO) == 1)
+		write(1, "\n", 1);
 	List_Destroy(&list);
 	return (0);
 }
