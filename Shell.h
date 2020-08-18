@@ -14,9 +14,12 @@
  *  Macros.
  */
 
+int
+Match(char *Path, char *Key1);
+
 #define Posicionar_Path(environ)		\
 	while ((*environ))			\
-		if ((**environ) == 'P')		\
+		if (!(Match("PATH", *environ)))	\
 			break;			\
 		else				\
 			(environ)++;
