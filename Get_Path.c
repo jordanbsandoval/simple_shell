@@ -1,5 +1,11 @@
 #include "Shell.h"
 
+/**
+ * Get_Path - Function that obtains the path in the environment that
+ *            is found.
+ * @list: Pointer to a structure.
+ */
+
 void
 Get_Path(List *list)
 {
@@ -24,7 +30,7 @@ Get_Path(List *list)
 	Posicionar_Environ(Temp_Environ);
 
 	while (**Temp_Environ)
-		Ins_Next_Element(list, NULL,Data_Path(Temp_Environ));
+		Ins_Next_Element(list, NULL, Data_Path(Temp_Environ));
 
 	/*
 	 * We place the pointer is an original position.

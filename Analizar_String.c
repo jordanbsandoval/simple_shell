@@ -61,10 +61,11 @@ char *Match_Path(char *Command_Or_Path, List *list)
 	Element *element = list->Head;
 
 	while (element)
-		if (!(list->Match(element->Path, Command_Or_Path)))
-			return (Command_Or_Path);
-		else
+		if (list->Match(element->Path, Command_Or_Path))
 			element = element->Next;
+		else
+			return (Command_Or_Path);
+
 	return (NULL);
 }
 
