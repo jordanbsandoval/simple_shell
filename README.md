@@ -39,7 +39,7 @@ or for the second command.
 | which             | Display which executable program will be executed                                            |
 | date              | with the  date  command, which displays the current time anddate                             |
 | cal               | A related command is cal which, by default, displays a calendar of the current month.        |
-| free              | To display the amount of free memory, enter the free command                                 |     
+| free              | To display the amount of free memory, enter the free command                                 |
 | df                | To see the current amount of free space on our disk drives, enter df                         |
 | exit              | Exit command at the shell prompt                                                             |
 | pwd               | Print name of current working directory                                                      |
@@ -66,7 +66,7 @@ $ echo "Holberton" | ./hsh
 
 The output of the program will appear as follows.
 
-$ Holberton 
+$ Holberton
 (Immediately exits the program)
 ```
 
@@ -91,7 +91,7 @@ ls: cannot access '/home/me/jkdsf': No such file or directory.
 
 Authors ✒️
 
-* [Jordan Buitrago](https://github.com/jordanbsandoval) 
+* [Jordan Buitrago](https://github.com/jordanbsandoval)
 * [Emmanuel Palacio Gaviria](https://github.com/epg01)
 
 Gratitude 🙇‍
