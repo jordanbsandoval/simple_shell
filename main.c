@@ -111,5 +111,5 @@ int main(void)
 
 	if (Status == -1)
 		Status = 127;
-	exit(Status);
+	return(Status);
 }
