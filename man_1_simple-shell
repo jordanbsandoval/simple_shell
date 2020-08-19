@@ -1,74 +1,83 @@
-.TH man 1 "12 Abr 2020" "V 1.0" "hsh man page" "Holberton School"
+.\MANPAGE Simple Shell.
+.TH Man Version 1 "21 agosto 2020" "1.0" "Simple Shell man page"
 
 .SH NAME
 
-hsh (Holberton Simple Shell)
+.B shell -- command interpreter
 
 .SH SYNOPSIS
-
-Run hsh
-.br
-.B ./hsh
+.B ./shell
 
 .SH DESCRIPTION
 
-Hsh is a basic command interpreter. Reads commands from standard
-input and execute them. Hsh has the basic features of linux sh.
-It can be use compiled and used in the most distributions and versions of linux.
+This is a simple UNIX command interpreter. The program has the same output as /bin/sh as well as the exact same error output. The only difference is when you print an error, the name of the program must be equivalent to your argv[0]. It contains basic features and functions found in other shell programs.
 
-.SH USAGE
-.SS INTERACTIVE MODE
-1- Run the executable file:
-.B ./hsh
+.SS Overview
+The simple shell is an excutable that reads commands from prompt, interprets and execute them, and also execute some built-in.
+
+.SS Path search
+When locating a command, The shell first looks to see if it has a builtin command by that name.If the builtin function don't exist then it looks if exist a coincidence in the PATH of enviroment variable (env) by that name. Then append the command from prompt to PATH directory and return the entire Path.
+
+.SS Running the program
+It runs by compiling all .c files the repository simple_shell to create an executable called shell.
+.SS
+EXAMPLE OF COMPILATION:
+gcc -Wall -Werror -Wextra -pedantic *.c -o shell
+
+.SH MODES
+
+INTERACTIVE MODE
+
+.SS
+EXAMPLE:
 .br
-2- Enter the command to run at the command prompt with its arguments
+$ ./shell
+.br
+ myShell $ ls
+.br
+ functions.c README.md shell.c
+.br
+ _getenv.c shell shell.h _which
+.br
+ myShell $ exit
+.br
+$
 .br
 
-Format:
+NON-INTERACTIVE MODE
+
+.SS
+EXAMPLE:
 .br
-.I <command>
-.I <argument_1>
-.I <argument_2>
-.I <argument_3>
-.B ...
-.SS NON-INTERACTIVE MODE
-You can invoke hsh and execute commands through a pipe
+$ echo "ls" | ./shell
+.br
+functions.c README.md shell.c
+.br
+_getenv.c shell shell.h _which
+.br
+$
 .br
 
-Format:
-.br
-.I <command>
-|
-.B ./hsh
-
-.SH BUILTIN COMMANDS
-In addition to running system programs, hsh has the following own commands
-
+.SH BUILT-IN COMMANDS AVALIBLE 
 .B env
-= prints environment variables and their content
+- Prints enviroment
 .br
 .B exit
-= let hsh end
+- exits the shell
 
+.SH RETURN VALUE
+Always 0.
 
-.SH EXAMPLE
-
-Example of how to execute a command in interactive mode, in this case To run
-.B ls
-and some arguments:
-.br
-.B ls -la
-.br
-
-Example of how to execute a command in non-interactive mode:
-.br
-.B echo "ls -la" | ./hsh
-
-.SH SEE ALSO
-.I man sh
+.SH SEE ALSO INFORMATION IN:
+.I sh(1)
 
 .SH BUGS
-No known bugs.
 
-.SH AUTHORS
-Emmanuel Palacios, Jordan buitrago
+No known bugs
+
+.SH AUTHOR
+
+ Emmanuel Palacios  --- 1679@holbertonschool.com
+.br
+ Jordan Buitrago    --- 1608@holbertonschool.com
+.br 
