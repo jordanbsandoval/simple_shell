@@ -153,9 +153,11 @@ int Analizar_String(char *String_Character, List *list)
 			free(Temp_String);
 			element = element->Next;
 		}
-		if (!element || Status == -1)
+		if (!element || State == -1)
 		{
 			hand_error(Counter_Error, argv);
+			if (State == 0)
+				State == 127;
 		}
 	}
 	free(argv);
