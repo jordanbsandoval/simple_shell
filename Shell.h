@@ -95,7 +95,7 @@ typedef struct List_    List;
 void
 hand_error(int error_counter, char **argv);
 
-void
+int
 Analizar_String(char *String_Character, List *list);
 
 char *

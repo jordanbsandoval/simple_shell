@@ -61,8 +61,7 @@ Execve(char *Path, char **argv)
 		wait(&status);
 	else
 		return (execve(Path, argv, NULL));
-
-	return (0);
+	return (status);
 }
 
 /**
@@ -84,13 +83,13 @@ void Handle_Sigint(int Status)
  * Return: 0.
  */
 
-int main(int argc, char **argv)
+int main(void)
 {
 	List list;
 	size_t Counter_Character = 0;
-	char *String_Character = NULL,  **Temp = environ;
+	char *String_Character = NULL;
+	int Status = 0;
 
-	(void)argc;
 	List_Init(&list, Destroy, Execve, Match);
 	Get_Path(&list);
 
@@ -100,23 +99,7 @@ int main(int argc, char **argv)
 	while (getline(&String_Character, &Counter_Character, stdin) != EOF)
 	{
 		Counter_Error++;
-		if (!(list.Match("exit", String_Character)))
-			if (Verificador_String(String_Character[4]))
-			{
-				free(String_Character), List_Destroy(&list);
-				exit(0);
-			}
-			else
-				hand_error(Counter_Error, argv);
-		else if (!(list.Match("env", String_Character)))
-			if (Verificador_String(String_Character[3]))
-			{
-				print_variable_Envarioment((Temp));
-			}
-			else
-				hand_error(Counter_Error, argv);
-		else
-			Analizar_String(String_Character, &list);
+		Status = Analizar_String(String_Character, &list);
 		if (isatty(STDIN_FILENO) == 1)
 			write(STDOUT_FILENO, "$ ", 2);
 		free(String_Character), String_Character  = NULL;
@@ -125,5 +108,7 @@ int main(int argc, char **argv)
 	free(String_Character), List_Destroy(&list);
 	if (isatty(STDIN_FILENO) == 1)
 		write(1, "\n", 1);
-	return (0);
+	if (Status == -1)
+		Status = 127;
+	exit(Status);
 }

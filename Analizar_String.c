@@ -41,7 +41,7 @@ int _Fork(char **argv)
 		return (1);
 	}
 	if (child_pid == 0)
-		execve(*argv, argv, NULL);
+		return (execve(*argv, argv, NULL));
 	else
 		wait(&status);
 
@@ -111,25 +111,30 @@ char *_strcat(Element *element, char *Command)
  * @list: Data structure.
  */
 
-void Analizar_String(char *String_Character, List *list)
+int Analizar_String(char *String_Character, List *list)
 {
 	int Number_Word = Counter_Word(String_Character);
 	int Index       = 1;
 	char **argv     = NULL;
 	char *Temp      = NULL;
+	int Status      = 0;
 
 	if (!Number_Word)
-		return;
+		return (0);
 	argv = (char **)malloc(sizeof(char *) * (Number_Word + 1));
 	if (!argv)
-		return;
+		return (0);
 	*argv = strtok(String_Character, " \n\t");
 	while (Index < Number_Word)
 		argv[Index++] = strtok(NULL, " \n\t");
 	Temp = *argv;
 	Temp = Match_Path(*argv, list);
 	if (Temp)
-		_Fork(argv);
+	{
+		Status = _Fork(argv);
+		if (Status == -1)
+			hand_error(Counter_Error, argv);
+	}
 	else
 	{
 		Element *element  = list->Head;
@@ -141,15 +146,19 @@ void Analizar_String(char *String_Character, List *list)
 			Temp_String = _strcat(element, *argv);
 			if (stat(Temp_String, &st) == 0)
 			{
-				list->Execve(Temp_String, argv);
+				Status = list->Execve(Temp_String, argv);
 				free(Temp_String);
 				break;
 			}
 			free(Temp_String);
 			element = element->Next;
 		}
-		if (!element)
+		if (!element || Status == -1)
+		{
 			hand_error(Counter_Error, argv);
+			Status = -1;
+		}
 	}
 	free(argv);
+	return (Status);
 }
