@@ -156,7 +156,6 @@ int Analizar_String(char *String_Character, List *list)
 		if (!element || Status == -1)
 		{
 			hand_error(Counter_Error, argv);
-			Status = -1;
 		}
 	}
 	free(argv);

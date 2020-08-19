@@ -108,5 +108,8 @@ int main(void)
 	free(String_Character), List_Destroy(&list);
 	if (isatty(STDIN_FILENO) == 1)
 		write(1, "\n", 1);
+
+	if (Status == -1)
+		Status = 127;
 	exit(Status);
 }
