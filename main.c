@@ -102,8 +102,6 @@ int main(void)
 	List_Init(&list, Destroy, Execve, Match);
 	Get_Path(&list);
 
-	printf("%d\n", SIGINT);
-
 	if (isatty(STDIN_FILENO) == 1)
 		write(STDOUT_FILENO, "$ ", 2);
 	signal(SIGINT, Handle_Sigint);
@@ -119,18 +117,16 @@ int main(void)
 				exit(0);
 			}
 			else
-				hand_error(Counter_Error, argv);
+				hand_error(Counter_Error, &String_Character);
 		}
 		else if (!(list.Match("env", String_Character)))
 		{
 			if (Verificador_String(String_Character[3]))
 			{
-				char **Temp = environ;
-
-				print_variable_Envarioment((Temp));
+				impenv();
 			}
 			else
-				hand_error(Counter_Error, argv);
+				hand_error(Counter_Error, &String_Character);
 		}
 		else
 			Status = Analizar_String(String_Character, &list);

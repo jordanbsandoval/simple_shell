@@ -118,4 +118,6 @@ List_Destroy(List *list);
 void
 Analizar_String_Character(char *String, List *list);
 
+void impenv(void);
+
 #endif
