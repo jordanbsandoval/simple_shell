@@ -58,9 +58,13 @@ Execve(char *Path, char **argv)
 		return (1);
 	}
 	if (child_pid)
+	{
 		wait(&status);
+		printf("EN la funcion analice_string");
+	}
 	else
 		return (execve(Path, argv, NULL));
+
 	return (status);
 }
 
@@ -71,9 +75,14 @@ Execve(char *Path, char **argv)
 
 void Handle_Sigint(int Status)
 {
-	Status = Status;
-	write(STDOUT_FILENO, "\n$ ", 3);
-	fflush(stdout);
+	if (Status == SIGINT)
+	{
+		Status = Status;
+		write(STDOUT_FILENO, "\n$ ", 3);
+		fflush(stdout);
+	}
+	if (Status == EOF)
+		printf("Hola como estas");
 }
 
 /**
@@ -93,13 +102,39 @@ int main(void)
 	List_Init(&list, Destroy, Execve, Match);
 	Get_Path(&list);
 
+	printf("%d\n", SIGINT);
+
 	if (isatty(STDIN_FILENO) == 1)
 		write(STDOUT_FILENO, "$ ", 2);
 	signal(SIGINT, Handle_Sigint);
 	while (getline(&String_Character, &Counter_Character, stdin) != EOF)
 	{
 		Counter_Error++;
-		Status = Analizar_String(String_Character, &list);
+		if (!(list.Match("exit", String_Character)))
+		{
+			if (Verificador_String(String_Character[4]))
+			{
+				free(String_Character);
+				List_Destroy(&list);
+				exit(0);
+			}
+			else
+				hand_error(Counter_Error, argv);
+		}
+		else if (!(list.Match("env", String_Character)))
+		{
+			if (Verificador_String(String_Character[3]))
+			{
+				char **Temp = environ;
+
+				print_variable_Envarioment((Temp));
+			}
+			else
+				hand_error(Counter_Error, argv);
+		}
+		else
+			Status = Analizar_String(String_Character, &list);
+
 		if (isatty(STDIN_FILENO) == 1)
 			write(STDOUT_FILENO, "$ ", 2);
 		free(String_Character), String_Character  = NULL;
