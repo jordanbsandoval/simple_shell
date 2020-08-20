@@ -14,8 +14,7 @@
  *  Macros.
  */
 
-int
-Match(char *Path, char *Key1);
+int Match(char *Path, char *Key1);
 
 #define Posicionar_Path(environ)		\
 	while ((*environ))			\
